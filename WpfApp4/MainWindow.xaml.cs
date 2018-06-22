@@ -31,34 +31,65 @@ namespace WpfApp4
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             byte[] filebytes = File.ReadAllBytes(filepath);
-            using (FileStream filestream = new FileStream(filepath + ".gz", FileMode.Create))
+            try
             {
-                using (GZipStream gZipStream = new GZipStream(filestream, CompressionMode.Compress))
+                using (FileStream filestream = new FileStream(filepath + ".gz", FileMode.Create))
                 {
-                    gZipStream.Write(filebytes, 0, filebytes.Length);
+                    
+                    using (GZipStream gZipStream = new GZipStream(filestream, CompressionMode.Compress))
+                    {
+                        gZipStream.Write(filebytes, 0, filebytes.Length);
+                        
+                    }
                 }
+                MessageBox.Show("Compressing Done");
             }
-            MessageBox.Show("Compressing Done");
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+           
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-
-            filepath.Split();
-            using (FileStream filestreamOutput = new FileStream(filepath, FileMode.Create))
+            char[] arr= { 'g','z'};
+            filepath.Split(arr);
+            MessageBox.Show(filepath);
+            try
             {
-                using (FileStream filestream = new FileStream("img.txt.gz", FileMode.Open))
+                using (FileStream filestreamOutput = new FileStream(filepath, FileMode.Create))
                 {
-                    using (GZipStream gZipStream = new GZipStream(filestream, CompressionMode.Decompress))
+                   
+                    using (FileStream filestream = new FileStream(Pathtxtbox.Text, FileMode.Open))
                     {
-                        byte[] bytes = new byte[1000];
-                        while (gZipStream.Read(bytes, 0, 1000) != 0)
+                        using (GZipStream gZipStream = new GZipStream(filestream, CompressionMode.Decompress))
                         {
-                            filestreamOutput.Write(bytes, 0, 1000);
+                            byte[] bytes = new byte[1000];
+                            while (gZipStream.Read(bytes, 0, 1000) != 0)
+                            {
+                                filestreamOutput.Write(bytes, 0, 1000);
+                            }
                         }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+           
+        }
+
+        private void ArchiveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Archiv files (*.gz)|*.gz";
+            openFileDialog.ShowDialog();
+            filepath = openFileDialog.FileName;
+            Pathtxtbox.Text = filepath;
         }
     }
 }

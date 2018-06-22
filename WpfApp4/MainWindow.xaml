@@ -7,11 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="OpenFile" HorizontalAlignment="Left" Margin="62,42,0,0" VerticalAlignment="Top" Width="91" Height="29" Click="Button_Click"/>
-        <TextBox Name="Pathtxtbox" HorizontalAlignment="Left" Height="58" Margin="435,49,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="347"/>
-        <TextBlock HorizontalAlignment="Left" Margin="373,52,0,0" TextWrapping="Wrap" Text="Path" VerticalAlignment="Top"/>
-        <Button Content="Compress" HorizontalAlignment="Left" Margin="94,146,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
-        <Button Content="Decompress" HorizontalAlignment="Left" Margin="396,146,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_2"/>
+        <Button Content="Open File" HorizontalAlignment="Left" Margin="23,146,0,0" VerticalAlignment="Top" Width="66" Height="18" Click="Button_Click"/>
+        <TextBox Name="Pathtxtbox" HorizontalAlignment="Left" Height="58" Margin="160,49,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="347"/>
+        <TextBlock HorizontalAlignment="Left" Margin="81,49,0,0" TextWrapping="Wrap" Text="Path" VerticalAlignment="Top" Height="28" Width="34"/>
+        <Button Content="Compress" HorizontalAlignment="Left" Margin="115,146,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+        <Button Content="Decompress" HorizontalAlignment="Left" Margin="594,145,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_2"/>
+        <Button Content="Open Archive" Name="ArchiveBtn" Click="ArchiveBtn_Click" HorizontalAlignment="Left" Margin="490,146,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>

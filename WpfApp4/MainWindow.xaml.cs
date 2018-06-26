@@ -54,14 +54,13 @@ namespace WpfApp4
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            char[] arr= { 'g','z'};
-            filepath.Split(arr);
-            MessageBox.Show(filepath);
+           
+            filepath = Path.GetFileName( filepath.Substring(0, filepath.Length - 3));
+            
             try
             {
                 using (FileStream filestreamOutput = new FileStream(filepath, FileMode.Create))
                 {
-                   
                     using (FileStream filestream = new FileStream(Pathtxtbox.Text, FileMode.Open))
                     {
                         using (GZipStream gZipStream = new GZipStream(filestream, CompressionMode.Decompress))
@@ -73,11 +72,11 @@ namespace WpfApp4
                             }
                         }
                     }
+                    MessageBox.Show("Decompression Done");
                 }
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
            
